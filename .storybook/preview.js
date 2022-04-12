@@ -1,5 +1,7 @@
-import React from 'react'
 import { MantineProvider } from '@mantine/core'
+import React from 'react'
+import { QueryClientProvider } from 'react-query'
+import { queryClient } from '../src/api/client'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -14,7 +16,9 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <MantineProvider withGlobalStyles withNormalizeCSS>
-      <Story />
+      <QueryClientProvider client={queryClient}>
+        <Story />
+      </QueryClientProvider>
     </MantineProvider>
   )
 ]

@@ -1,9 +1,9 @@
 import { MantineProvider } from '@mantine/core'
 import ReactDOM from 'react-dom'
 import { QueryClientProvider } from 'react-query'
+import { queryClient } from './api/client'
 import App from './App'
 import './index.css'
-import { queryClient } from './query/client'
 
 ReactDOM.render(
   <MantineProvider withGlobalStyles withNormalizeCSS>
