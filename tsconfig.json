@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "src"
   },
   "exclude": ["node_modules"],
   "include": ["react-app-env.d.ts", "**/*.ts", "**/*.tsx"]
