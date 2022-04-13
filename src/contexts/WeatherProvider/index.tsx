@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { CityType } from 'types'
 
 const WeatherContext = createContext<CityType>({} as CityType)
@@ -8,14 +8,14 @@ type WeatherProviderProps = {
 }
 
 const WeatherProvider = ({ children }: WeatherProviderProps) => {
-  const [city, setCity] = useState<CityType>()
+  const [city] = useState<CityType>({} as CityType)
 
-  useEffect(() => {
-    if (!city) {
-    }
-  }, [city])
+  // useEffect(() => {
+  //   if (!city) {
+  //   }
+  // }, [city])
 
-  return <WeatherContext.Provider value={{}}>{children}</WeatherContext.Provider>
+  return <WeatherContext.Provider value={{ ...city }}>{children}</WeatherContext.Provider>
 }
 
 export const useWeather = () => {

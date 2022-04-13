@@ -33,6 +33,6 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unused-vars": "error",
-    "max-len": ["warn", { "code": 100 }]
+    "max-len": ["warn", { "code": 100, "ignoreComments": true }]
   }
 }

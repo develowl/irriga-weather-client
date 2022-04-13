@@ -1,4 +1,5 @@
-import { MantineProvider } from '@mantine/core'
+import { MantineProvider, ColorSchemeProvider } from '@mantine/core'
+import { useDarkMode } from 'storybook-dark-mode'
 import React from 'react'
 import { QueryClientProvider } from 'react-query'
 import { queryClient } from '../src/api/client'
@@ -13,12 +14,18 @@ export const parameters = {
   }
 }
 
-export const decorators = [
-  (Story) => (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <QueryClientProvider client={queryClient}>
-        <Story />
-      </QueryClientProvider>
-    </MantineProvider>
+function ThemeWrapper({ children }) {
+  return (
+    <ColorSchemeProvider colorScheme={'light'}>
+      <MantineProvider
+        theme={{ colorScheme: useDarkMode() ? 'dark' : 'light' }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      </MantineProvider>
+    </ColorSchemeProvider>
   )
-]
+}
+
+export const decorators = [(renderStory) => <ThemeWrapper>{renderStory()}</ThemeWrapper>]

@@ -1,4 +1,4 @@
-import { Story, Meta } from '@storybook/react/types-6-0'
+import { Meta, Story } from '@storybook/react/types-6-0'
 import Search from '.'
 
 export default {
@@ -6,4 +6,8 @@ export default {
   component: Search
 } as Meta
 
-export const Default: Story = () => <Search />
+export const Default: Story = () => (
+  <div style={{ width: 300 }}>
+    <Search />
+  </div>
+)
