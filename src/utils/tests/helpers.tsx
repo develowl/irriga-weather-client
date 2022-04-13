@@ -1,3 +1,4 @@
+import React from 'react'
 import { MantineProvider } from '@mantine/core'
 import { render, RenderResult } from '@testing-library/react'
 import { queryClient } from 'api/client'

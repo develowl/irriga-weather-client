@@ -1,7 +1,7 @@
-import { MantineProvider, ColorSchemeProvider } from '@mantine/core'
-import { useDarkMode } from 'storybook-dark-mode'
+import { MantineProvider } from '@mantine/core'
 import React from 'react'
 import { QueryClientProvider } from 'react-query'
+import { useDarkMode } from 'storybook-dark-mode'
 import { queryClient } from '../src/api/client'
 
 export const parameters = {
@@ -16,15 +16,13 @@ export const parameters = {
 
 function ThemeWrapper({ children }) {
   return (
-    <ColorSchemeProvider colorScheme={'light'}>
-      <MantineProvider
-        theme={{ colorScheme: useDarkMode() ? 'dark' : 'light' }}
-        withGlobalStyles
-        withNormalizeCSS
-      >
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <MantineProvider
+      theme={{ colorScheme: useDarkMode() ? 'dark' : 'light' }}
+      withGlobalStyles
+      withNormalizeCSS
+    >
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </MantineProvider>
   )
 }
 

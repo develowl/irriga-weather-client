@@ -1,9 +1,10 @@
+import React, { useEffect, useRef, useState } from 'react'
 import { Autocomplete, Kbd, Loader, useMantineTheme } from '@mantine/core'
 import { useDebouncedValue, useHotkeys } from '@mantine/hooks'
 import { getCities } from 'api/queries'
-import { useEffect, useRef, useState } from 'react'
 import { useQueryClient } from 'react-query'
 import { Search as SearchIcon } from 'tabler-icons-react'
+import { friendlyCityName } from 'api/helpers'
 
 const Search = () => {
   const theme = useMantineTheme()
@@ -23,9 +24,7 @@ const Search = () => {
           cacheTime: 0,
           staleTime: 0
         })
-        .then((cities) =>
-          setData(cities.map((city) => `${city.name}, ${city.state} - ${city.country}`))
-        )
+        .then((cities) => setData(cities.map((city) => friendlyCityName(city))))
         .finally(() => setLoading(false))
     }
   }, [debounced])
