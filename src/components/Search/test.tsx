@@ -2,7 +2,6 @@ import React from 'react'
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderWithTheme } from 'utils/tests/helpers'
-
 import Search from '.'
 
 describe('Search', () => {

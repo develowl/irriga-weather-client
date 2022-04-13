@@ -7,8 +7,4 @@ export default {
   component: Search
 } as Meta
 
-export const Default: Story = () => (
-  <div style={{ width: 300 }}>
-    <Search />
-  </div>
-)
+export const Default: Story = () => <Search />
