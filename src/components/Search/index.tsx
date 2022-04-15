@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Autocomplete, Kbd, Loader, useMantineTheme } from '@mantine/core'
+import { Autocomplete, AutocompleteItem, Kbd, Loader, useMantineTheme } from '@mantine/core'
 import { useDebouncedValue, useHotkeys, useMediaQuery } from '@mantine/hooks'
 import { getCities } from 'api/queries'
 import { useQueryClient } from 'react-query'
@@ -7,11 +7,15 @@ import { useQueryClient } from 'react-query'
 import { Search as SearchIcon } from 'tabler-icons-react'
 import { friendlyCityName } from 'api/helpers'
 import { useStyles } from './styles'
+import { useWeather } from 'contexts/WeatherProvider'
+import { CityType } from 'types'
 
 const Search = () => {
   const theme = useMantineTheme()
+  const { setCity } = useWeather()
   const { classes } = useStyles()
-  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`)
+  const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.xs}px)`)
+  const [cities, setCities] = useState<CityType[]>([])
   const [search, setSearch] = useState('')
   const [data, setData] = useState<string[]>([])
   const [debounced] = useDebouncedValue(search, 350)
@@ -28,10 +32,20 @@ const Search = () => {
           cacheTime: 0,
           staleTime: 0
         })
-        .then((cities) => setData(cities.map((city) => friendlyCityName(city))))
+        .then((cities) => {
+          setCities(cities)
+          setData(cities.map((city) => friendlyCityName(city)))
+        })
         .finally(() => setLoading(false))
     }
   }, [debounced])
+
+  const onSubmit = async (item: AutocompleteItem) => {
+    const foundCity = cities.find((city) => friendlyCityName(city) === item.value)
+    if (foundCity) {
+      setCity(foundCity)
+    }
+  }
 
   const rightSection = (
     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -60,6 +74,11 @@ const Search = () => {
       value={search}
       onChange={setSearch}
       data={data}
+      onItemSubmit={(item) => {
+        ref.current?.blur()
+        onSubmit(item)
+      }}
+      onFocus={() => ref.current?.select()}
     />
   )
 }

@@ -12643,6 +12643,11 @@ react-textarea-autosize@^8.3.0, react-textarea-autosize@^8.3.2:
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
 
+react-use-cookie@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-use-cookie/-/react-use-cookie-1.4.0.tgz#8f9fffeea9ad48d97dfbb6818aa0c63771946e3a"
+  integrity sha512-e21YFkimh8OX6Ctqq89YeeiwsIL1jr2GyCeBdkBKDWY5X5o2yonbQuqfFODK4opteJS3F7ya0OuYg06lOeqvJQ==
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
