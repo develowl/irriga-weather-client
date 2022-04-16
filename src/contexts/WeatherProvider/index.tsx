@@ -48,6 +48,7 @@ const WeatherProvider = ({ children }: WeatherProviderProps) => {
     if (city.name !== temperature?.cityName) {
       refetch()
     }
+    document.title = `Previsão para ${city.name} - Irriga Weather`
   }, [city])
 
   useEffect(() => {
