@@ -3,7 +3,7 @@ import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mant
 import { queryClient } from 'api/client'
 import { QueryClientProvider } from 'react-query'
 import useCookie, { cookieOptions } from 'react-use-cookie'
-import TemplateHome from 'Templates/Home'
+import TemplateHome from 'templates/Home'
 import WeatherProvider from 'contexts/WeatherProvider'
 
 function App() {
